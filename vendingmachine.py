@@ -1,4 +1,11 @@
-price = int(input("Enter number: "))
+print("""_  _ ____ _  _ ___  _ _  _ ____    _  _ ____ ____ _  _ _ _  _ ____ 
+|  | |___ |\ | |  \ | |\ | | __    |\/| |__| |    |__| | |\ | |___ 
+ \/  |___ | \| |__/ | | \| |__]    |  | |  | |___ |  | | | \| |___ 
+                                                                   
+""")
+print("What would you like from the MENU?")
+print("""Kitkat<1>, Snickers<2>, Mars<3>, Twix<4>, Maltesers<5>, Chupa Chups<6>, Skittles <7>, Mentos <8>, Sourpunk<9>, Airheads<10>, Cheetos<11>, Lays<12>, Tiffany<13>, Mr Krisps<14>, Doritos<15> """)
+price = int(input("Enter the item number: "))
 vending_machine = {
     # Chocolates
     '1': {'name': 'Kit-Kat', 'price': 2},
@@ -26,20 +33,27 @@ if selected_item:
     item_name = selected_item['name']
     item_price = selected_item['price']
     print(f"You selected: {item_name}. Price: ${item_price}")
-    
-    if price < 4:
-        print("Thank you for your purchase, Come again!")
-    elif price < 5:
-        print("Thank you for your purchase, Come again!")
-    elif price < 6:
-        print("Thank you for your purchase, Come again!")
-    elif price < 7:
-        print("Thank you for your purchase, Come again!")
-    elif price < 8:
-        print("Thank you for your purchase, Come again!")
-    elif price < 13:
-        print("Thank you for your purchase, Come again!")
-    elif price < 20:
-        print("Thank you for your purchase, Come again!")
+# Confirmation of the product you want to purchase
+    confirmation = input(f"Do you want to purchase {item_name}? (yes/no): ").lower()
+    if confirmation == 'yes':
+        payment_method = input("Choose payment method (cash/card): ").lower()
+        if payment_method == 'cash':
+            print("Please insert cash into the machine.")
+        elif payment_method == 'card':
+            print("Please insert your card into the card reader.")
+        else:
+            print("Invalid payment method. Purchase canceled. Have a nice day!")
+            exit()
+
+        # Receipt after purchase
+        print("\n-------- Receipt --------")
+        print(f"Item: {item_name}")
+        print(f"Price: ${item_price}")
+        print(f"Payment Method: {payment_method.capitalize()}")
+        print("-------------------------")
+
+        print("Thank you for your purchase! Come again!")
+    else:
+        print("Purchase canceled. Have a nice day!")
 else:
     print("Invalid selection. Please enter a valid item number.")
